@@ -132,3 +132,26 @@ form.create-note button {
   cursor: pointer;
   outline: none;
 }
+
+a.active_class{
+    color: blueviolet;
+    border-bottom: 1px solid red;
+}
+
+.Menu_style{
+  width: 100%;
+  line-height: 60px;
+  background-color: #20232a;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Login_style{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  
+  background-color: rgba(87, 21, 21, 0.3);
+}

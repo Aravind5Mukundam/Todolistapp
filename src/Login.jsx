@@ -1,38 +1,61 @@
-import React from "react";
+import React,{useState} from "react";
 import './App.css'
-const Login=(props)=>{
-    const{email, setEmail, password, setPassword, handleLogIn, handleSignUp, hasAccount, setHasAccount, emailError, passwordError}=props;
-    return(
-        <section className="login">
-            <div className="loginContainer">
-                <label>Username</label>
-                    <input type="text" outofocus="true" required value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    ></input>
-                    <p className="errorMsg">{emailError}</p>
-                <label>Password</label>
-                    <input type="Password" required value={password} 
-                    onChange={(e)=>setPassword(e.target.value)}
-                    />
-                    <p className="errorMsg">{passwordError}</p>
-                <div className="btnContainer">
-                {hasAccount ?(
-                    <div>
-                    <button onClick={handleLogIn}>SignIn</button>
-                    <p>Don't have an account ?
-                    <span onClick={()=>setHasAccount(!hasAccount)}>SignUp </span></p>
-                    </div>
-                ):(
-                    <div>
-                    <button onClick={handleSignUp}>SignUp</button>
-                    <p>Have an account ?
-                    <span onClick={()=>setHasAccount(!hasAccount)}>SignIn</span></p> 
-                    </div>
-                )}
-               </div>
-            </div>
-        </section>
-    );
+import Todolist from "./Todolist";
+
+const Login = () => {
+    const[fullName, setName] = useState({
+        fname: "",
+        lname: "",
+        email: "",
+        phone: ""
+    });
+    const InputEvent = (event) => {
+        // console.log(event.target.value);
+        const { value, name } = event.target;
+
+        setName((prevVal) => {
+            // console.log(prevVal);
+            
+            return{
+                ...prevVal,
+                [name]: value
+            }
+        })
+    }
+
+    const onSubmits = (e) => {
+        e.preventDefault();
+        alert('form submitted');
+    }
+
+    return (
+        <>
+            <form className="Login_style" onSubmit={onSubmits} >
+                <div  >
+                    <h1> Hello {fullName.fname} {fullName.lname} </h1>
+                    <p> {fullName.email} </p>
+                    <p> {fullName.phone} </p>
+                    <input type='text' placeholder='Enter Name' 
+                    onChange={InputEvent} value={fullName.fname}
+                    name='fname' />
+                    <br />
+                    <input type='text' placeholder='Enter Last Name' 
+                    onChange={InputEvent} value={fullName.lname}
+                    name='lname' />
+                    <br />
+                    <input type='email' placeholder='Enter Email' 
+                    onChange={InputEvent} value={fullName.email}
+                    name='email' />
+                    <br />
+                    <input type='number' placeholder='Enter phone number' 
+                    onChange={InputEvent} value={fullName.phone}
+                    name='phone' />
+                    <button type='submit' onClick={onSubmits} > Click Me </button>
+                </div>
+            </form>
+            <Todolist/>
+        </>
+    )
 }
 
 export default Login;
