@@ -13,7 +13,8 @@
 
 # production
 /build
-
+/asyncActions.js
+/inde.js
 # misc
 .DS_Store
 .env.local
