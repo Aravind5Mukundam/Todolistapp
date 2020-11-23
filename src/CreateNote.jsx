@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
-import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import {Form} from 'react-bootstrap';
+import styled from 'styled-components';
+
+const Styles = styled.div`
+   .form-control{
+       width: 25%;      
+       padding: 25px;
+       
+   }
+    
+`;
 
 const CreateNote = (props) => {
     
@@ -34,13 +45,21 @@ const CreateNote = (props) => {
     return (
         <>
             <div className='main_note'>
-                <form className="create-note">
-                    <input className="title" type='text' name='title' value={note.title} onChange={InputEvent} placeholder='Title' autoComplete='off' />
-                    <textarea className="content"  rows='' column='' name='content' value={note.content} onChange={InputEvent} placeholder='Write a note' ></textarea>
+                <Form>
+                    <Form.Group>
+                        <br/>
+                        <Styles>
+                            <Form.Control className="form-control" type="text" placeholder="Title" size="lg" name="title" value={note.title} onChange={InputEvent} autoComplete="off" />
+                            <br />
+                            <Form.Control className="form-control" type="text" placeholder="Write a note" rows="" column="" name="content" value={note.content} onChange={InputEvent} />
+                            <br />
+                        </Styles>
+                        
+                    </Form.Group>
                     <Button onClick={addEvent}>
                         <AddIcon className='plus_sign' />
                     </Button>
-                </form>
+                </Form>
             </div>
         </>
     )

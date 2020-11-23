@@ -1,9 +1,12 @@
 
-import React, { useEffect, useState ,Component} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Header from './Header';
+import Footer from './Footer';
 import CreateNote from './CreateNote';
 import Note from './Note';
-import {BASE_URL} from "./Constant";
+import {BASE_URL} from './Constant';
 
 
 const Todolist = () => {
@@ -19,13 +22,13 @@ const Todolist = () => {
     }, []);
     
     const addNote = async  (note) => {
-        // alert('clicked');
+        
         const addedNote = await axios.post(BASE_URL, note);
-        // console.log(addedNote.data);
+        
         setAddItem((prevData) => {
             return [...prevData, addedNote.data];
         })
-        // console.log(addItem);
+        
 
     };
 
@@ -52,7 +55,7 @@ const Todolist = () => {
 
     return (
         <>
-           
+            <Header/>
             <CreateNote passNote={addNote}
               
             />           
@@ -61,7 +64,7 @@ const Todolist = () => {
                 title={val.title} content={val.content} 
                 deleteItem={onDelete} />;
             })}
-            
+            <Footer/>
         </>
     )
 }
